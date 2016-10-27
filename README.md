@@ -1,27 +1,15 @@
 vagrant-ansible-ezpublish compatible window 10
 =========================
 
+Compatible avec :
+vagrant_1.8.6.msi
+VirtualBox-5.1.8-111374-Win.exe
+
+Optimisations :
 http://jeremybarthe.com/2015/02/02/speed-up-vagrant-environment-symfony2/
 
 vagrant plugin install vagrant-cachier
 
-+ ajouter ça dans la config :
-
-  if Vagrant.has_plugin?("vagrant-cachier")
-    config.cache.scope = :machine
-
-    config.cache.synced_folder_opts = {
-      type: :nfs,
-      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
-    }
-
-    config.cache.enable :generic, {
-      "cache"  => { cache_dir: "/var/www/app/cache" },
-      "logs"   => { cache_dir: "/var/www/app/logs" },
-      "vendor" => { cache_dir: "/var/www/vendor" },
-    }
-  end
-  
 vagrant reload
 
 Essayer d'autre types de filesystem pour lenteurs windows :
@@ -53,8 +41,7 @@ Notice that **V** in `Vagrantfile` is **case sensitive**.
 ## Local development setup
 
 The local development is meant to be used in a vagrant provisioned box.
-
-The provisioner for the project is ansible.
+e provisioner for the project is ansible.
 
 Once you have the prerequisites setup, you can run the
 ```
