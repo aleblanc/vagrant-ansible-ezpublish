@@ -1,7 +1,33 @@
-vagrant-ansible-ezpublish
+vagrant-ansible-ezpublish compatible window 10
 =========================
 
-Vagrant box, with Ansible provisioning to setup new eZ Publish project.
+http://jeremybarthe.com/2015/02/02/speed-up-vagrant-environment-symfony2/
+
+vagrant plugin install vagrant-cachier
+
++ ajouter ça dans la config :
+
+  if Vagrant.has_plugin?("vagrant-cachier")
+    config.cache.scope = :machine
+
+    config.cache.synced_folder_opts = {
+      type: :nfs,
+      mount_options: ['rw', 'vers=3', 'tcp', 'nolock']
+    }
+
+    config.cache.enable :generic, {
+      "cache"  => { cache_dir: "/var/www/app/cache" },
+      "logs"   => { cache_dir: "/var/www/app/logs" },
+      "vendor" => { cache_dir: "/var/www/vendor" },
+    }
+  end
+  
+vagrant reload
+
+Essayer d'autre types de filesystem pour lenteurs windows :
+https://www.vagrantup.com/docs/synced-folders/rsync.html
+https://www.vagrantup.com/docs/synced-folders/smb.html
+
 
 ## Authors
 
